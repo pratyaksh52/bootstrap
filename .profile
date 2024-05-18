@@ -1,0 +1,3 @@
+# Use lesspipe
+eval $(lesspipe)
+
