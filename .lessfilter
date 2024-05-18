@@ -1,5 +1,3 @@
-#!/bin/sh
-
 # show directory as listing
 if test -d "$1"; then
  /bin/ls -alFh -- "$1"
