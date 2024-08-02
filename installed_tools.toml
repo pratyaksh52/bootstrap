@@ -1,0 +1,12 @@
+# A file containing a list of tools installed externally
+
+fzf
+bat
+
+# Install neovim using bob
+# Post that install kickstart.nvim from my personal fork
+# bob - https://github.com/MordechaiHadad/bob
+# kickstart.nvim - https://github.com/pratyaksh52/kickstart.nvim
+bob
+kickstart.nvim
+

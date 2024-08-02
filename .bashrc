@@ -11,11 +11,11 @@ alias sublime="/mnt/c/Program\ Files/Sublime\ Text/sublime_text.exe"
 alias wip="cd $WIP"
 alias dev="cd $DEV"
 
-
 # Custom general purpose functions
 ## Functions that are acting as aliases
 # bat() { batcat ; }
 is() { fzf -m --preview "batcat --color=always {}" ; }
+ivs() { nvim -Mp $(is) ; }
 
 
 
