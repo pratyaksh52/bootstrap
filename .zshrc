@@ -1,6 +1,7 @@
 alias lla="ls -alFh"
 alias ll="ls -lFh"
 alias h="history"
+alias zed="open -a /Applications/Zed.app -n"
 
 # Custom PS1 for zsh
 
@@ -46,7 +47,5 @@ precmd() {
     prompt_command
 }
 
-# pyenv settings
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
+# ASDF settings
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
