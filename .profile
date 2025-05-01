@@ -9,3 +9,5 @@ export PATH=$PATH:~/bin
 
 # Add bob to path
 export PATH="$PATH:/home/chopr/.local/share/bob/nvim-bin"
+
+. "$HOME/.cargo/env"
