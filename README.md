@@ -6,13 +6,9 @@ brew install git
 brew install stow
 ```
 
-2. Change to your `$HOME` and clone this repo
+2. Clone this repo
 ```
-git clone https://github.com/pratyaksh52/dotfiles.git
+git clone https://github.com/pratyaksh52/bootstrap.git
 ```
 
-3. Change to the dotfiles directory and run stow
-```
-cd $HOME/dotfiles
-stow .
-```
+3. Run `dotfiles/stow-dotfiles.sh` from anywhere
