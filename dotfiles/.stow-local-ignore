@@ -1,0 +1,9 @@
+# Mac Stuff
+\.DS_Store
+
+# Repo stuff
+\.bashrc
+installed_tools.toml
+
+# This file
+\.stow-global-ignore
