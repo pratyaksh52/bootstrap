@@ -4,6 +4,7 @@
 # Repo stuff
 \.bashrc
 installed_tools.toml
+stow-dotfiles.sh
 
 # This file
 \.stow-global-ignore

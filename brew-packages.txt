@@ -3,3 +3,5 @@
 nvim
 fzf
 bat
+starship
+uv
