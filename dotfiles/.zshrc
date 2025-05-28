@@ -4,9 +4,8 @@ alias h="history 0"
 alias zed="open -a /Applications/Zed.app -n"
 alias inv='realpath $(fzf --preview="bat --color=always {}") | pbcopy'
 
-# ASDF settings
-export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 export PATH=$PATH:$HOME/go/bin
+export LESSOPEN="|/opt/homebrew/bin/lesspipe.sh %s"
 
 eval "$(starship init zsh)"
 
