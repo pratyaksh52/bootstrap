@@ -1,7 +1,23 @@
-# THIS IS A WIP
-
-nvim
+git
+bob
 fzf
 bat
 starship
 uv
+stow
+gh
+fd
+mas
+ripgrep
+zoxide
+just
+lesspipe
+--cask maccy
+--cask sublime-text
+--cask zed
+--cask visual-studio-code
+--cask microsoft-edge
+--cask raycast
+--cask spotify
+--cask discord
+--cask devtoys
