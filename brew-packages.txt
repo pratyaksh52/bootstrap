@@ -21,3 +21,7 @@ lesspipe
 --cask spotify
 --cask discord
 --cask devtoys
+--cask mos
+--cask domzilla-caffeine
+--cask --no-quarantine middleclick
+--cask localsend
