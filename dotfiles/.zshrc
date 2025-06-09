@@ -1,3 +1,5 @@
+setopt INTERACTIVE_COMMENTS
+
 alias lla="ls -alFh"
 alias ll="ls -lFh"
 alias h="history 0"
@@ -25,3 +27,9 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 
 eval "$(zoxide init --cmd cd zsh)"
+
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
+
+# jenv enable-plugin export
+

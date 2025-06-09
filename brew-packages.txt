@@ -12,6 +12,8 @@ ripgrep
 zoxide
 just
 lesspipe
+tldr
+hyperfine
 --cask maccy
 --cask sublime-text
 --cask zed
