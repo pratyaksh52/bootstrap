@@ -5,6 +5,7 @@ alias ll="ls -lFh"
 alias h="history 0"
 alias zed="open -a /Applications/Zed.app -n"
 alias inv='realpath $(fzf --preview="bat --color=always {}") | pbcopy'
+alias update-brew="brew update && brew upgrade && brew upgrade --greedy --cask --verbose && brew cleanup"
 
 export PATH=$PATH:$HOME/go/bin
 export LESSOPEN="|/opt/homebrew/bin/lesspipe.sh %s"
@@ -27,9 +28,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 
 eval "$(zoxide init --cmd cd zsh)"
-
-
-
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
