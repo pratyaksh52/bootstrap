@@ -32,6 +32,11 @@ if [ -z "$DISABLE_ZOXIDE" ]; then
     eval "$(zoxide init --cmd cd zsh)"
 fi
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+eval "$(uv generate-shell-completion zsh)"
+eval "$(uvx --generate-shell-completion zsh)"
+
+##############################################################
+# THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+##############################################################
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
