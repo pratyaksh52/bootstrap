@@ -1,0 +1,17 @@
+dbeaver-community
+devtoys
+discord
+jordanbaird-ice
+keyclu
+localsend
+maccy
+microsoft-edge
+--no-quarantine middleclick
+mos
+orbstack
+pearcleaner
+raycast
+spotify
+sublime-text
+visual-studio-code
+zed
