@@ -35,6 +35,8 @@ fi
 eval "$(uv generate-shell-completion zsh)"
 eval "$(uvx --generate-shell-completion zsh)"
 
+export PATH="$HOME/bin:$PATH"
+
 ##############################################################
 # THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 ##############################################################
