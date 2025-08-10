@@ -2,6 +2,7 @@ broot
 bat
 bob
 cheat
+dust
 fd
 ffmpeg
 fzf
@@ -20,4 +21,5 @@ tldr
 tree
 uv
 yt-dlp
+zig
 zoxide
