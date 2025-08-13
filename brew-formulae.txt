@@ -20,6 +20,7 @@ stow
 tldr
 tree
 uv
+wget
 yt-dlp
 zig
 zoxide
