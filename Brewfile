@@ -30,7 +30,7 @@ brew "hyperfine"    # CLI benchmarking
 brew "just"         # Command runner / build tool
 brew "lesspipe"     # Preprocessor for less
 brew "mas"          # Mac App Store CLI
-brew "ncspot"       # Spotify cli client
+brew "ncspot"       # Spotify CLI client
 brew "rename"       # Batch renaming
 brew "ripgrep"      # Fast search
 brew "starship"     # Shell prompt
@@ -53,7 +53,7 @@ cask "jordanbaird-ice"                                 # Menu bar spacer utility
 cask "keyclu"                                          # Shortcut cheat sheet
 cask "localsend"                                       # Local file sharing
 cask "maccy"                                           # Clipboard manager
-cask "middleclick", args: { "no_quarantine" => true }  # Middle click gestures
+cask "middleclick", args: { no_quarantine: true }      # Middle click gestures
 cask "mos"                                             # Smooth mouse scrolling for mac
 cask "orbstack"                                        # Containers & VMs
 cask "pearcleaner"                                     # App uninstaller
