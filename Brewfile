@@ -20,8 +20,10 @@ brew "bat"          # Better cat with syntax highlighting
 brew "bob"          # Neovim version manager
 brew "cheat"        # Cheat sheets from command line
 brew "dust"         # Disk usage visualization
+brew "expect"       # Expect for shell (includes unbuffer)
 brew "fd"           # Better find
 brew "ffmpeg"       # Media processing
+brew "fselect".     # Search files with SQL like syntax
 brew "fzf"          # Fuzzy finder
 brew "gh"           # GitHub CLI
 brew "git"          # Git SCM
@@ -53,7 +55,7 @@ cask "jordanbaird-ice"                                 # Menu bar spacer utility
 cask "keyclu"                                          # Shortcut cheat sheet
 cask "localsend"                                       # Local file sharing
 cask "maccy"                                           # Clipboard manager
-cask "middleclick", args: { no_quarantine: true }      # Middle click gestures
+cask "middleclick", args: { no_quarantine: true }      # Middle click gesture
 cask "mos"                                             # Smooth mouse scrolling for mac
 cask "orbstack"                                        # Containers & VMs
 cask "pearcleaner"                                     # App uninstaller
