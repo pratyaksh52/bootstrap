@@ -3,7 +3,6 @@ setopt INTERACTIVE_COMMENTS
 alias lla="ls -alFh"
 alias ll="ls -lFh"
 alias h="history 0"
-alias zed="open -a /Applications/Zed.app -n"
 alias inv='realpath $(fzf --preview="bat --color=always {}") | pbcopy'
 alias update-brew="brew update && brew upgrade && brew upgrade --greedy --cask --verbose && brew cleanup"
 
@@ -18,7 +17,7 @@ source <(fzf --zsh)
 . "$HOME/.cargo/env"
 
 # Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/pratyakshchoudhary/.lmstudio/bin"
+export PATH="$PATH:$HOME/.lmstudio/bin"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
