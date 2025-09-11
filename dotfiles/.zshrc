@@ -37,6 +37,7 @@ eval "$(uvx --generate-shell-completion zsh)"
 
 export PATH="$HOME/bin:$PATH"
 
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 ##############################################################
 # THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 ##############################################################

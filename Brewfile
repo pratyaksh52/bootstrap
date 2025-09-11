@@ -15,35 +15,36 @@ tap "homebrew/core"
 # ----------------------------
 # CLI Tools & Utilities (brew formulae)
 # ----------------------------
-brew "broot"        # Tree view navigation
-brew "bat"          # Better cat with syntax highlighting
-brew "bob"          # Neovim version manager
-brew "cheat"        # Cheat sheets from command line
-brew "dust"         # Disk usage visualization
-brew "expect"       # Expect for shell (includes unbuffer)
-brew "fd"           # Better find
-brew "ffmpeg"       # Media processing
-brew "fselect".     # Search files with SQL like syntax
-brew "fzf"          # Fuzzy finder
-brew "gh"           # GitHub CLI
-brew "git"          # Git SCM
-brew "go"           # Go programming language
-brew "hyperfine"    # CLI benchmarking
-brew "just"         # Command runner / build tool
-brew "lesspipe"     # Preprocessor for less
-brew "mas"          # Mac App Store CLI
-brew "ncspot"       # Spotify CLI client
-brew "rename"       # Batch renaming
-brew "ripgrep"      # Fast search
-brew "starship"     # Shell prompt
-brew "stow"         # Symlink dotfiles manager
-brew "tldr"         # Simplified man pages
-brew "tree"         # Directory listing
-brew "uv"           # Fast Python package installer
-brew "wget"         # Download utility
-brew "yt-dlp"       # YouTube video downloader
-brew "zig"          # Zig programming language
-brew "zoxide"       # Smarter cd command
+brew "broot"                      # Tree view navigation
+brew "bat"                        # Better cat with syntax highlighting
+brew "bob"                        # Neovim version manager
+brew "cheat"                      # Cheat sheets from command line
+brew "dust"                       # Disk usage visualization
+brew "expect"                     # Expect for shell (includes unbuffer)
+brew "fd"                         # Better find
+brew "ffmpeg"                     # Media processing
+brew "fselect".                   # Search files with SQL like syntax
+brew "fzf"                        # Fuzzy finder
+brew "gh"                         # GitHub CLI
+brew "git"                        # Git SCM
+brew "go"                         # Go programming language
+brew "hyperfine"                  # CLI benchmarking
+brew "just"                       # Command runner / build tool
+brew "lesspipe"                   # Preprocessor for less
+brew "mas"                        # Mac App Store CLI
+brew "ncspot"                     # Spotify CLI client
+brew "rename"                     # Batch renaming
+brew "ripgrep"                    # Fast search
+brew "starship"                   # Shell prompt
+brew "stow"                       # Symlink dotfiles manager
+brew "tldr"                       # Simplified man pages
+brew "tree"                       # Directory listing
+brew "uv"                         # Fast Python package installer
+brew "wget"                       # Download utility
+brew "yt-dlp"                     # YouTube video downloader
+brew "zig"                        # Zig programming language
+brew "zoxide"                     # Smarter cd command
+brew "zsh-autosuggestions"        # Zsh autosuggestions
 
 # ----------------------------
 # GUI Applications (brew casks)
