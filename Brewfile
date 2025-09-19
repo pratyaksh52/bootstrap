@@ -11,6 +11,7 @@
 # ----------------------------
 tap "homebrew/cask"
 tap "homebrew/core"
+tap "AlexStrNik/Browserino"
 
 # ----------------------------
 # CLI Tools & Utilities (brew formulae)
@@ -49,6 +50,7 @@ brew "zsh-autosuggestions"        # Zsh autosuggestions
 # ----------------------------
 # GUI Applications (brew casks)
 # ----------------------------
+cask "browserino", args: { no_quarantine: true }       # Browser manager for macOS
 cask "dbeaver-community"                               # Database client
 cask "devtoys"                                         # Developer Swiss-army knife
 cask "discord"                                         # Chat for communities
