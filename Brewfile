@@ -29,6 +29,7 @@ brew "fzf"                        # Fuzzy finder
 brew "gh"                         # GitHub CLI
 brew "git"                        # Git SCM
 brew "go"                         # Go programming language
+brew "hashcat"                    # Password cracking
 brew "hyperfine"                  # CLI benchmarking
 brew "just"                       # Command runner / build tool
 brew "lesspipe"                   # Preprocessor for less
