@@ -27,7 +27,7 @@ brew "ffmpeg"                     # Media processing
 brew "fselect".                   # Search files with SQL like syntax
 brew "fzf"                        # Fuzzy finder
 brew "gh"                         # GitHub CLI
-brew "git"                        # Git SCM
+brew "git-extras"                 # Extra git utilities
 brew "go"                         # Go programming language
 brew "hashcat"                    # Password cracking
 brew "hyperfine"                  # CLI benchmarking
@@ -35,6 +35,7 @@ brew "just"                       # Command runner / build tool
 brew "lesspipe"                   # Preprocessor for less
 brew "mas"                        # Mac App Store CLI
 brew "ncspot"                     # Spotify CLI client
+brew "neovim"                     # Vim-based text editor
 brew "rename"                     # Batch renaming
 brew "ripgrep"                    # Fast search
 brew "starship"                   # Shell prompt
@@ -61,6 +62,7 @@ cask "localsend"                                       # Local file sharing
 cask "maccy"                                           # Clipboard manager
 cask "middleclick", args: { no_quarantine: true }      # Middle click gesture
 cask "mos"                                             # Smooth mouse scrolling for mac
+cask "ollama-app"                                      # Local AI models
 cask "orbstack"                                        # Containers & VMs
 cask "pearcleaner"                                     # App uninstaller
 cask "raycast"                                         # Productivity launcher
