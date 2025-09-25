@@ -9,6 +9,12 @@ alias update-brew="brew update && brew upgrade && brew upgrade --greedy --cask -
 export PATH=$PATH:$HOME/go/bin
 export LESSOPEN="|/opt/homebrew/bin/lesspipe.sh %s"
 
+fpath=(~/.zsh $fpath)
+
+# Enable completion system
+autoload -Uz compinit
+compinit
+
 eval "$(starship init zsh)"
 
 # Set up fzf key bindings and fuzzy completion
@@ -37,8 +43,16 @@ eval "$(uvx --generate-shell-completion zsh)"
 export PATH="$HOME/bin:$PATH"
 
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# Git completion (zsh)
+zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
+
 ##############################################################
 # THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 ##############################################################
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/pratyakshchoudhary/.lmstudio/bin"
+# End of LM Studio CLI section
+
