@@ -15,8 +15,6 @@ fpath=(~/.zsh $fpath)
 autoload -Uz compinit
 compinit
 
-eval "$(starship init zsh)"
-
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
 
@@ -52,7 +50,8 @@ zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
+eval "$(starship init zsh)"
+
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:/Users/pratyakshchoudhary/.lmstudio/bin"
 # End of LM Studio CLI section
-
