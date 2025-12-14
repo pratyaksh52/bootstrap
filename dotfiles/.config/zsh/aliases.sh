@@ -1,5 +1,3 @@
-alias lla="ls -alFh"
-alias ll="ls -lFh"
 alias h="history 0"
 
 # ls
