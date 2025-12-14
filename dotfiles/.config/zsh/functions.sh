@@ -22,4 +22,5 @@ update-brew() {
   brew upgrade
   brew upgrade --cask --greedy
   brew cleanup
+  brew doctor
 }
