@@ -18,6 +18,9 @@ update-brew() {
     return 1
   fi
 
+  # Ask for sudo upfront
+  sudo -v || return
+
   brew update
   brew upgrade
   brew upgrade --cask --greedy
