@@ -1,22 +1,5 @@
-setopt INTERACTIVE_COMMENTS
-
-alias lla="ls -alFh"
-alias ll="ls -lFh"
-alias h="history 0"
-alias inv='realpath $(fzf --preview="bat --color=always {}") | pbcopy'
-alias update-brew="brew update && brew upgrade && brew upgrade --greedy --cask --verbose && brew cleanup"
-
+source ./.config/zsh/init.sh
 export PATH=$PATH:$HOME/go/bin
-export LESSOPEN="|/opt/homebrew/bin/lesspipe.sh %s"
-
-fpath=(~/.zsh $fpath)
-
-# Enable completion system
-autoload -Uz compinit
-compinit
-
-# Set up fzf key bindings and fuzzy completion
-source <(fzf --zsh)
 
 . "$HOME/.cargo/env"
 
@@ -30,20 +13,6 @@ export NVM_DIR="$HOME/.nvm"
 # Generated for envman. Do not edit.
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 
-
-if [ -z "$DISABLE_ZOXIDE" ]; then
-    eval "$(zoxide init --cmd cd zsh)"
-fi
-
-eval "$(uv generate-shell-completion zsh)"
-eval "$(uvx --generate-shell-completion zsh)"
-
-export PATH="$HOME/bin:$PATH"
-
-source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-# Git completion (zsh)
-zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
-
 ##############################################################
 # THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 ##############################################################
@@ -55,3 +24,6 @@ eval "$(starship init zsh)"
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:/Users/pratyakshchoudhary/.lmstudio/bin"
 # End of LM Studio CLI section
+
+# Added by Antigravity
+export PATH="/Users/pratyakshchoudhary/.antigravity/antigravity/bin:$PATH"
