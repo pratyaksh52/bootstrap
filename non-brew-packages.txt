@@ -1,8 +1,0 @@
-# CLI
-nvm
-rust
-
-
-# Apps
-qbittorrent
-bitwarden
