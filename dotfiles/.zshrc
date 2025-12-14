@@ -1,4 +1,4 @@
-source ./.config/zsh/init.sh
+. "$HOME/.config/zsh/init.sh"
 export PATH=$PATH:$HOME/go/bin
 
 . "$HOME/.cargo/env"
