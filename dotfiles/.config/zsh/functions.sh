@@ -23,6 +23,10 @@ update-brew() {
 
   brew update
   brew upgrade
+
+  # Keep sudo alive
+  sudo -n true
+
   brew upgrade --cask --greedy
   brew cleanup
   brew doctor
