@@ -7,6 +7,44 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "languages": {
+    "Python": {
+      "language_servers": [
+        // Disable basedpyright and enable Ty, and otherwise
+        // use the default configuration.
+        "ty",
+        "!basedpyright",
+        "..."
+      ],
+      "format_on_save": "on",
+      "code_actions_on_format": {
+        "source.organizeImports": true
+      },
+      "indent_guides": {
+        "background_coloring": "indent_aware"
+      }
+    },
+    "YAML": {
+      "tab_size": 2,
+      "indent_guides": {
+        "background_coloring": "indent_aware"
+      }
+    },
+    "Shell Script": {
+      "tab_size": 2
+    },
+    "Java": {
+      "preferred_line_length": 120
+    }
+  },
+  "terminal": {
+    "detect_venv": {
+      "on": {
+        "directories": [".venv", "venv"],
+        "activate_script": "default"
+      }
+    }
+  },
   "relative_line_numbers": "disabled",
   "icon_theme": "Colored Zed Icons Theme Dark",
   "ui_font_family": ".ZedSans",
