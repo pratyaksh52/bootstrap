@@ -1,5 +1,5 @@
 [include]
-	path = ~/.config/git/peronsal/peronsal.gitconfig
+	path = ~/.config/git/personal/personal.gitconfig
 
 [include]
     path = ~/.config/git/work/work.gitconfig
