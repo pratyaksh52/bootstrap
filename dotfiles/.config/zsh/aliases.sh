@@ -8,3 +8,6 @@ else
   alias ll="ls -lFhG"
   alias lla="ls -alFhG"
 fi
+
+# Source work aliases, if present
+[ -f "$HOME/.config/zsh/work/aliases.sh" ] && . "$HOME/.config/zsh/work/aliases.sh"
