@@ -1,0 +1,7 @@
+[user]
+	name = pratyaksh52
+	email = choudharypratyakshpc@gmail.com
+[credential "https://dev.azure.com"]
+	useHttpPath = true
+[include]
+	path = ~/.config/git/common.gitconfig

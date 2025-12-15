@@ -1,11 +1,5 @@
-[user]
-	name = pratyaksh52
-	email = choudharypratyakshpc@gmail.com
-[credential]
-	helper = /usr/local/share/gcm-core/git-credential-manager
-[credential "https://dev.azure.com"]
-	useHttpPath = true
 [include]
-	path = ~/.config/git/init.gitconfig
-	path = ~/.config/git/core.gitconfig
-    path = ~/.config/git/aliases.gitconfig
+	path = ~/.config/git/peronsal/peronsal.gitconfig
+
+[include]
+    path = ~/.config/git/work/work.gitconfig
