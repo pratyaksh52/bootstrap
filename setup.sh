@@ -9,6 +9,12 @@ sudo -v
 # Keep-alive: update existing `sudo` time stamp until the script has finished
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
+# Set zsh as the default shell
+if [ "$SHELL" != "/bin/zsh" ]; then
+    echo "Setting zsh as the default shell..."
+    chsh -s /bin/zsh
+fi
+
 # Run stow-dotfiles.sh to symlink dotfiles
 ./dotfiles/stow-dotfiles.sh
 
@@ -17,16 +23,9 @@ if ! command -v brew &> /dev/null; then
     echo "Homebrew not found. Installing Homebrew..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-
 # Install homebrew packages from Brewfile
 echo "Installing Homebrew packages from Brewfile..."
 brew bundle --file ./Brewfile
-
-# Set zsh as the default shell
-if [ "$SHELL" != "/bin/zsh" ]; then
-    echo "Setting zsh as the default shell..."
-    chsh -s /bin/zsh
-fi
 
 # Install starship prompt
 if ! command -v starship &> /dev/null; then

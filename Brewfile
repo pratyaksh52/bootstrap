@@ -22,6 +22,7 @@ brew "bob"                        # Neovim version manager
 brew "cheat"                      # Cheat sheets from command line
 brew "dust"                       # Disk usage visualization
 brew "expect"                     # Expect for shell (includes unbuffer)
+brew "eza"                        # Better ls
 brew "fd"                         # Better find
 brew "ffmpeg"                     # Media processing
 brew "fselect".                   # Search files with SQL like syntax
