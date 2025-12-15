@@ -71,5 +71,8 @@
         "mode": "system",
         "light": "Ayu Light",
         "dark": "Ayu Dark"
+    },
+    "file_types": {
+        "Git Config": ["*.gitconfig"]
     }
 }
