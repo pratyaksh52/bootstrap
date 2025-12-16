@@ -41,7 +41,7 @@ brew "rename"                     # Batch renaming
 brew "ripgrep"                    # Fast search
 brew "starship"                   # Shell prompt
 brew "stow"                       # Symlink dotfiles manager
-brew "tldr"                       # Simplified man pages
+brew "tlrc"                       # Simplified man pages
 brew "tree"                       # Directory listing
 brew "uv"                         # Fast Python package installer
 brew "wget"                       # Download utility
