@@ -1,6 +1,9 @@
 [alias]
-    st = status -sb
-    co = checkout
     br = branch
+    bra = branch -a
+    co = checkout
     cm = commit -m
     lg = log --oneline --graph --decorate --all
+    rh = reset HEAD
+    st = status -sb
+    sta = status
