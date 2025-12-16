@@ -14,7 +14,8 @@
         "custom": 1.5
     },
     "file_types": {
-        "Git Config": ["*.gitconfig"]
+        "Git Config": ["*.gitconfig"],
+        "Shell Script": ["*.env*"]
     },
     "git_panel": {
         "dock": "right"
