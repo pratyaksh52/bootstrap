@@ -1,4 +1,4 @@
 [include]
 	path = ~/.config/git/init.gitconfig
 	path = ~/.config/git/core.gitconfig
-    path = ~/.config/git/aliases.gitconfig
+	path = ~/.config/git/aliases.gitconfig

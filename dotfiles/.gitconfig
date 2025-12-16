@@ -2,4 +2,4 @@
 	path = ~/.config/git/personal/personal.gitconfig
 
 [include]
-    path = ~/.config/git/work/work.gitconfig
+	path = ~/.config/git/work/work.gitconfig
