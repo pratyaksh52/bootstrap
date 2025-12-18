@@ -1,0 +1,9 @@
+cli:
+  - nvm
+  - rust
+  - git-completion.zsh
+  - sdkman
+
+gui:
+  - qbittorrent
+  - bitwarden

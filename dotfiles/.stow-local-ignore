@@ -3,7 +3,7 @@
 
 # Repo stuff
 \.bashrc
-installed_tools.toml
+\.zshrc
 stow-dotfiles.sh
 
 # This file

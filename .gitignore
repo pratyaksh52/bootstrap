@@ -1,1 +1,6 @@
+# OS Specific stuff
 *.DS_Store
+
+# Work related files, which should not be on GitHub
+dotfiles/.config/zsh/work
+dotfiles/.config/git/work
