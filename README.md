@@ -11,4 +11,9 @@ brew install stow
 git clone https://github.com/pratyaksh52/bootstrap.git
 ```
 
-3. Run `dotfiles/stow-dotfiles.sh` from anywhere
+3. Run `dotfiles/stow-dotfiles.sh`
+
+4. Add the following line to your `.zshrc`
+```
+. "$HOME/.config/zsh/init.sh"
+```
