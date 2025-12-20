@@ -25,7 +25,7 @@ brew "expect"                     # Expect for shell (includes unbuffer)
 brew "eza"                        # Better ls
 brew "fd"                         # Better find
 brew "ffmpeg"                     # Media processing
-brew "fselect".                   # Search files with SQL like syntax
+brew "fselect"                    # Search files with SQL like syntax
 brew "fzf"                        # Fuzzy finder
 brew "gh"                         # GitHub CLI
 brew "git-extras"                 # Extra git utilities
