@@ -8,7 +8,7 @@ inv() {
   }
 
   file=$(fzf --preview='bat --color=always {}') || return
-  realpath_compat "$file" | copy
+  realpath_compat "$file" | tr -d '\n' | copy
 }
 
 # Function to update homebrew packages
