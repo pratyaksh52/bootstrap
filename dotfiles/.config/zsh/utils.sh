@@ -22,3 +22,15 @@ copy() {
     return 1
   fi
 }
+
+# ---------- realpath compatibility ----------
+realpath_compat() {
+  if command -v realpath >/dev/null 2>&1; then
+    realpath "$1"
+  else
+    python3 - <<EOF
+import os,sys
+print(os.path.realpath(sys.argv[1]))
+EOF
+  fi
+}
