@@ -39,6 +39,7 @@ brew 'lesspipe'                   # Preprocessor for less
 brew 'mas'                        # Mac App Store CLI
 brew 'ncspot'                     # Spotify CLI client
 brew 'neovim'                     # Vim-based text editor
+brew 'opencode'                   # CLI based AI coding agent
 brew 'rename'                     # Batch renaming
 brew 'ripgrep'                    # Fast search
 brew 'starship'                   # Shell prompt
