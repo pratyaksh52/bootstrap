@@ -6,6 +6,7 @@
 
 
 export LESSOPEN="|/opt/homebrew/bin/lesspipe.sh %s"
+export LESS="-R"
 
 fpath=(~/.zsh $fpath)
 

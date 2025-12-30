@@ -42,6 +42,7 @@ brew 'neovim'                     # Vim-based text editor
 brew 'opencode'                   # CLI based AI coding agent
 brew 'rename'                     # Batch renaming
 brew 'ripgrep'                    # Fast search
+brew 'source-highlight'           # Utility to generate syntax highlighting
 brew 'starship'                   # Shell prompt
 brew 'stow'                       # Symlink dotfiles manager
 brew 'tlrc'                       # Simplified man pages
