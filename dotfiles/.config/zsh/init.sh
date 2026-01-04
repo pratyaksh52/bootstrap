@@ -10,6 +10,8 @@ export LESS="-R"
 
 fpath=(~/.zsh $fpath)
 
+eval "$(starship init zsh)"
+
 # Enable completion system
 autoload -Uz compinit
 compinit -C
