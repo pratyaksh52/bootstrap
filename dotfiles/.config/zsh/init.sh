@@ -1,8 +1,8 @@
 [[ -o interactive ]] && setopt INTERACTIVE_COMMENTS
 
 [ -f "$HOME/.config/zsh/utils.sh" ] && . "$HOME/.config/zsh/utils.sh"
-[ -f "$HOME/.config/zsh/aliases.sh" ] && . "$HOME/.config/zsh/aliases.sh"
 [ -f "$HOME/.config/zsh/functions.sh" ] && . "$HOME/.config/zsh/functions.sh"
+[ -f "$HOME/.config/zsh/aliases.sh" ] && . "$HOME/.config/zsh/aliases.sh"
 
 
 export LESSOPEN="|/opt/homebrew/bin/lesspipe.sh %s"

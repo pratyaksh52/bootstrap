@@ -36,6 +36,7 @@ brew 'hashcat'                    # Password cracking
 brew 'hyperfine'                  # CLI benchmarking
 brew 'just'                       # Command runner / build tool
 brew 'lesspipe'                   # Preprocessor for less
+brew 'lsd'                        # Better ls
 brew 'mas'                        # Mac App Store CLI
 brew 'ncspot'                     # Spotify CLI client
 brew 'neovim'                     # Vim-based text editor

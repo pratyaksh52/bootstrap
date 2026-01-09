@@ -31,3 +31,13 @@ update-brew() {
   brew cleanup
   brew doctor
 }
+
+eza-ls() {
+  eza \
+    --icons=auto \
+    --group-directories-first \
+    --git \
+    --classify=auto \
+    --octal-permissions \
+    "$@"
+}
