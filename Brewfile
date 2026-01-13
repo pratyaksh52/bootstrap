@@ -30,6 +30,7 @@ brew 'ffmpeg'                     # Media processing
 brew 'fselect'                    # Search files with SQL like syntax
 brew 'fzf'                        # Fuzzy finder
 brew 'gh'                         # GitHub CLI
+brew 'git-delta'                  # Better diff viewer for git
 brew 'git-extras'                 # Extra git utilities
 brew 'go'                         # Go programming language
 brew 'hashcat'                    # Password cracking
