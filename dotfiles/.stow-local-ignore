@@ -6,3 +6,12 @@ stow-dotfiles.sh
 
 # This file
 \.stow-global-ignore
+
+# Files no longer used
+\.zshrc
+\.zshenv
+\.zprofile
+\.zlogin
+\.zlogout
+\.bashrc
+\.profile
