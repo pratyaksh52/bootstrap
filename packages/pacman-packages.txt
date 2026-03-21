@@ -1,0 +1,13 @@
+# fish-first baseline for pacman-based Linux systems
+fish
+git
+stow
+starship
+fzf
+ripgrep
+eza
+zoxide
+bat
+wl-clipboard
+xclip
+xsel

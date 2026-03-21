@@ -4,3 +4,6 @@
 # Work related files, which should not be on GitHub
 dotfiles/.config/zsh/work
 dotfiles/.config/git/work
+
+# Fish
+fish_variables

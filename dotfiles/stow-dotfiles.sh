@@ -1,8 +1,10 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
+
+set -euo pipefail
 
 CWD="$PWD"
-SCRIPT_PATH="${0:A:h}"
+SCRIPT_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-cd "$SCRIPT_PATH" || exit 1
+cd "$SCRIPT_PATH"
 stow -t "$HOME" --restow -v .
-cd "$CWD" || exit 1
+cd "$CWD"

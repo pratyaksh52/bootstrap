@@ -2,8 +2,6 @@
 \.DS_Store
 
 # Repo stuff
-\.bashrc
-\.zshrc
 stow-dotfiles.sh
 
 # This file

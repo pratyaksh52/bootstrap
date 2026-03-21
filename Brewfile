@@ -27,6 +27,7 @@ brew 'expect'                     # Expect for shell (includes unbuffer)
 brew 'eza'                        # Better ls
 brew 'fd'                         # Better find
 brew 'ffmpeg'                     # Media processing
+brew 'fish'                       # Supported interactive shell
 brew 'fselect'                    # Search files with SQL like syntax
 brew 'fzf'                        # Fuzzy finder
 brew 'gh'                         # GitHub CLI
@@ -54,7 +55,6 @@ brew 'wget'                       # Download utility
 brew 'yt-dlp'                     # YouTube video downloader
 brew 'zig'                        # Zig programming language
 brew 'zoxide'                     # Smarter cd command
-brew 'zsh-autosuggestions'        # Zsh autosuggestions
 
 # ----------------------------
 # GUI Applications (brew casks)

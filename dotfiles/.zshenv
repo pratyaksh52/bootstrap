@@ -1,4 +1,1 @@
-. "$HOME/.cargo/env"
-
-# uv
-export PATH="$HOME/.local/bin:$PATH"
+[ -f "$HOME/.config/shell/env.sh" ] && . "$HOME/.config/shell/env.sh"

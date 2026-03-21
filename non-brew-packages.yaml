@@ -1,7 +1,6 @@
 cli:
   - nvm
-  - rust
-  - git-completion.zsh
+  - rustup
   - sdkman
 
 gui:
