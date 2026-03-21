@@ -10,3 +10,7 @@ work-config.fish
 
 # Fish
 fish_variables
+
+# Sensitive files
+gh/
+auth.gitconfig
