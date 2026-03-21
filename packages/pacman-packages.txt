@@ -1,6 +1,8 @@
 # fish-first baseline for pacman-based Linux systems
+eza
 fish
 git
+gh
 stow
 starship
 fzf
