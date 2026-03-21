@@ -9,6 +9,7 @@ end
 
 if set -q WSL_DISTRO_NAME
     set -gx BOOTSTRAP_IS_WSL 1
+    set -gx BROWSER wslview
 else if test -r /proc/sys/kernel/osrelease
     if string match -qi "*microsoft*" -- (cat /proc/sys/kernel/osrelease)
         set -gx BOOTSTRAP_IS_WSL 1

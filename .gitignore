@@ -1,5 +1,6 @@
 # OS Specific stuff
 *.DS_Store
+wslu/
 
 # Work related files, which should not be on GitHub
 dotfiles/.config/zsh/work
