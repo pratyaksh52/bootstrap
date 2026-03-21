@@ -1,6 +1,7 @@
 # OS Specific stuff
 *.DS_Store
 wslu/
+dotfiles/.config/mimeapps.list
 
 # Work related files, which should not be on GitHub
 dotfiles/.config/zsh/work
