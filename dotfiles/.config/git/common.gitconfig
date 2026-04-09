@@ -4,3 +4,4 @@
 	path = ~/.config/git/aliases.gitconfig
 	path = ~/.config/git/delta.gitconfig
 	path = ~/.config/git/auth.gitconfig
+	path = ~/.config/git/filter.gitconfig
