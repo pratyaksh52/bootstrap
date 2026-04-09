@@ -63,7 +63,6 @@ cask 'browserino', args: { no_quarantine: true }       # Browser manager for mac
 cask 'dbeaver-community'                               # Database client
 cask 'devtoys'                                         # Developer Swiss-army knife
 cask 'discord'                                         # Chat for communities
-cask 'jordanbaird-ice'                                 # Menu bar spacer utility
 cask 'keyclu'                                          # Shortcut cheat sheet
 cask 'localsend'                                       # Local file sharing
 cask 'maccy'                                           # Clipboard manager
@@ -75,5 +74,6 @@ cask 'pearcleaner'                                     # App uninstaller
 cask 'raycast'                                         # Productivity launcher
 cask 'spotify'                                         # Music
 cask 'sublime-text'                                    # Text editor
+cask 'thaw'                                            # Menu bar spacer utility
 cask 'visual-studio-code'                              # Code editor
 cask 'zed'                                             # Code editor
