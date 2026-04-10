@@ -1,5 +1,4 @@
 cli:
-  - nvm
   - rustup
 
 gui:
