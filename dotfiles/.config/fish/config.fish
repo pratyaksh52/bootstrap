@@ -3,4 +3,3 @@
 # Generated for envman. Do not edit.
 test -s ~/.config/envman/load.fish; and source ~/.config/envman/load.fish
 
-test -d ~/go/bin; and fish_add_path ~/go/bin
