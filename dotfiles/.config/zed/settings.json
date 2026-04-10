@@ -50,7 +50,12 @@
             ],
         },
         "Shell Script": {
+            "format_on_save": "on",
             "tab_size": 2,
+        },
+        "Fish": {
+            "format_on_save": "on",
+            "tab_size": 4,
         },
         "YAML": {
             "indent_guides": {

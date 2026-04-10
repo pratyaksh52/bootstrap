@@ -33,6 +33,7 @@ brew 'fzf'                        # Fuzzy finder
 brew 'gh'                         # GitHub CLI
 brew 'git-delta'                  # Better diff viewer for git
 brew 'git-extras'                 # Extra git utilities
+brew 'gnupg'                      # To GPG signatures
 brew 'go'                         # Go programming language
 brew 'hashcat'                    # Password cracking
 brew 'hyperfine'                  # CLI benchmarking

@@ -29,7 +29,7 @@ The script installs baseline packages for the current platform, stows the dotfil
 
 ## Manual installers
 
-`non-brew-packages.yaml` is reserved for tools that still need their own installers, such as `nvm`, `rustup`.
+`non-brew-packages.yaml` is reserved for tools and applications that still need their own installers or do not work well with homebrew, such as `rustup`, `bitwarden`, etc.
 
 ## Shell layout
 
