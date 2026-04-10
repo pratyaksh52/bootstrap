@@ -30,3 +30,5 @@ if [[ -o interactive ]]; then
     eval "$(uv generate-shell-completion zsh)"
   fi
 fi
+
+eval "$(mise activate zsh)"

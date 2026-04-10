@@ -1,7 +1,6 @@
 cli:
   - nvm
   - rustup
-  - sdkman
 
 gui:
   - qbittorrent
