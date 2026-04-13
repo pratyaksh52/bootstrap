@@ -65,6 +65,7 @@ cask 'browserino', args: { no_quarantine: true }       # Browser manager for mac
 cask 'dbeaver-community'                               # Database client
 cask 'devtoys'                                         # Developer Swiss-army knife
 cask 'discord'                                         # Chat for communities
+cask 'hyperkey'                                        # Map modifier key
 cask 'keyclu'                                          # Shortcut cheat sheet
 cask 'localsend'                                       # Local file sharing
 cask 'maccy'                                           # Clipboard manager
