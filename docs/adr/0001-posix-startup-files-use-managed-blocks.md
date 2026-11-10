@@ -1,6 +1,6 @@
 # POSIX startup files use managed blocks, not stow
 
-The repo does not stow `.zshrc`, `.zshenv`, `.bashrc`, `.bash_profile` or `.profile`. Instead, `install-dotfiles.sh` writes a Managed block at the top of each Live startup file that sources the repo's Environment and Interactive setup. Third-party installers (jcode, LM Studio, OrbStack, rbenv, JetBrains Toolbox, and others) keep appending to these files. If the files were stowed, those appends would land in tracked repo files and show up in every `git status`. Keeping the files unmanaged, except for one block, lets installers keep writing to them while the repo still controls what loads.
+The repo does not stow `.zshrc`, `.zshenv`, `.bashrc`, `.bash_profile` or `.profile`. Instead, `install-dotfiles.sh` writes a Managed block at the top of the Live file of each shell, which sources the repo's Environment and Interactive setup. Third-party installers (jcode, LM Studio, OrbStack, rbenv, JetBrains Toolbox, and others) keep appending to these files. If the files were stowed, those appends would land in tracked repo files and show up in every `git status`. Keeping the files unmanaged, except for one block, lets installers keep writing to them while the repo still controls what loads.
 
 ## Considered Options
 

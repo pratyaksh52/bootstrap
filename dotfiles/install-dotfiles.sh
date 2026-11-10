@@ -3,9 +3,11 @@
 #   1. unfold any directory an earlier stow linked whole into the repo;
 #   2. remove broken links left by Stowed dotfiles the repo no longer has;
 #   3. stow the Stowed dotfiles in this directory, files only;
-#   4. write a Managed block at the top of each Live startup file.
-# Safe to re-run. See docs/adr/0001-posix-startup-files-use-managed-blocks.md
-# and docs/adr/0002-stow-files-never-directories.md.
+#   4. write a Managed block at the top of each shell's Live file;
+#   5. make sure ~/.gitconfig exists as a Live file and has a git identity.
+# Safe to re-run. See docs/adr/0001-posix-startup-files-use-managed-blocks.md,
+# docs/adr/0002-stow-files-never-directories.md and
+# docs/adr/0005-git-config-uses-the-xdg-file.md.
 
 set -euo pipefail
 
@@ -155,7 +157,38 @@ $SOURCE_BASHRC"
   write_managed_block "$HOME/.profile" "$SOURCE_ENV"
 }
 
+# ~/.gitconfig is a Live file. It must exist even when empty: without it,
+# `git config --global` writes to ~/.config/git/config, which is the repo's.
+# The identity is per machine, so ask for it once when none is set, and only
+# when a person is at the terminal.
+setup_git_live_file() {
+  local name email
+
+  [[ -e "$HOME/.gitconfig" ]] || {
+    touch "$HOME/.gitconfig"
+    printf 'Created Live file: %s\n' "$HOME/.gitconfig"
+  }
+
+  git config --global user.email >/dev/null && return
+
+  if [[ ! -t 0 || ! -t 1 ]]; then
+    printf 'No git identity set. Run: git config --global user.name "..."; git config --global user.email "..."\n' >&2
+    return
+  fi
+
+  read -r -p 'Git user.name: ' name
+  read -r -p 'Git user.email: ' email
+  if [[ -z "$name" || -z "$email" ]]; then
+    printf 'Skipped setting the git identity.\n' >&2
+    return
+  fi
+  git config --global user.name "$name"
+  git config --global user.email "$email"
+  printf 'Git identity written to %s\n' "$HOME/.gitconfig"
+}
+
 unfold_folded_dirs
 prune_stale_links
 stow_dotfiles
 write_managed_blocks
+setup_git_live_file

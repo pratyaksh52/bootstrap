@@ -32,12 +32,12 @@ _Avoid_: function, util, shell helper
 An alias defined once and loaded into every interactive fish, zsh and bash shell. An alias that cannot be written the same way for all three is not a Shared alias; it lives in that shell's Interactive setup.
 _Avoid_: abbreviation, shortcut
 
-**Live startup file**:
-A shell startup file in the home directory (`.zshrc`, `.bashrc`, `.profile`, fish's `config.fish` and similar) that the user and third-party installers both write to. The bootstrap does not own it.
-_Avoid_: dotfile, rc file
+**Live file**:
+A file in the home directory that the user and their tools both write to, so the bootstrap does not own it: the shell startup files (`.zshrc`, `.bashrc`, `.profile`, fish's `config.fish` and similar) and `~/.gitconfig`. Anything that differs per machine, such as the git identity, lives in a Live file.
+_Avoid_: Live startup file, dotfile, rc file
 
 **Managed block**:
-The marked region the bootstrap owns inside a Live startup file, used to load the Environment and Interactive setup. Everything outside it belongs to the user and their installers.
+The marked region the bootstrap owns inside a shell's Live file, used to load the Environment and Interactive setup. Everything outside it belongs to the user and their installers.
 _Avoid_: hook, snippet, shim
 
 **Stowed dotfile**:

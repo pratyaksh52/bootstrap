@@ -1,0 +1,40 @@
+# Git settings shared by every machine. Git reads this file on its own.
+# Identity, credential helpers and anything work-specific go in ~/.gitconfig,
+# which is read after this file and wins. See
+# docs/adr/0005-git-config-uses-the-xdg-file.md.
+
+[init]
+	defaultBranch = main
+
+[core]
+	editor = nvim -f
+	ignorecase = false
+	pager = delta
+
+[alias]
+	br = branch
+	bra = branch -a
+	co = checkout
+	cm = commit -m
+	lg = log --oneline --graph --decorate --all
+	rh = reset HEAD
+	st = status -sb
+	sta = status
+
+# Diffs through delta.
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true
+	dark = true
+	line-numbers = true
+
+[merge]
+	conflictStyle = zdiff3
+
+# Git LFS.
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

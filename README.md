@@ -33,7 +33,7 @@ cd bootstrap
 ./dotfiles/install-dotfiles.sh
 ```
 
-This stows the dotfiles into `$HOME` and writes the Managed blocks into your shell startup files.
+This stows the dotfiles into `$HOME`, writes the Managed blocks into your shell startup files, and asks for your git name and email if none are set yet.
 
 4. Switch your login shell to fish when ready:
 
@@ -81,4 +81,16 @@ To re-apply the dotfiles:
 - Re-running the install removes links in `$HOME` to Stowed dotfiles the repo has since deleted or renamed. Broken links that don't point into the repo are left alone.
 - Tools that add their own PATH entries (rustup's Cargo, Go) are not part of the repo. If one of them didn't set up a shell for you, add its line to that shell's startup file outside the bootstrap block.
 - `copy` uses the first clipboard tool it finds: `pbcopy`, `clip.exe` (WSL), `wl-copy`, `xclip`, then `xsel`.
-- Open [`dotfiles/.config/git/personal/personal.gitconfig`](/Users/pratyakshchoudhary/bootstrap/dotfiles/.config/git/personal/personal.gitconfig) and replace the personal credentials with your own.
+## Git layout
+
+The repo's git settings (aliases, editor, delta, LFS) live in one file, `dotfiles/.config/git/config`, which git reads on its own. `~/.gitconfig` is yours: your identity, credential helpers and anything `gh`, `git lfs install` or `git config --global` write go there, and it wins over the repo's file. The install creates it if it's missing and asks for your identity once. See [ADR-0005](docs/adr/0005-git-config-uses-the-xdg-file.md).
+
+On a machine with both personal and work repos, keep the personal identity in `~/.gitconfig` and switch it for work directories:
+
+```ini
+[includeIf "gitdir:~/work/"]
+	path = ~/.config/git/work.gitconfig
+```
+
+with the work `user.name` and `user.email` (and, for Azure DevOps, `credential."https://dev.azure.com".useHttpPath = true`) in that file. Machines set up before this layout lose the Azure setting on the next install and need it re-added there.
+
