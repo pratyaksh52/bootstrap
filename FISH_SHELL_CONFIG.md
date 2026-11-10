@@ -224,7 +224,7 @@ type zoxide
 The current shell model is:
 
 - fish is the supported interactive shell
-- bash is used for scripts like `setup.sh`
+- bash is used for scripts like `install-dotfiles.sh`
 - every shell loads the Environment from `~/.config/shell/env.sh`; zsh and bash load it, and `interactive.sh`, through a managed block (see the README)
 
 So if you want to change your day-to-day shell experience, the fish files are now the main place to edit.

@@ -1,6 +1,6 @@
 # Bootstrap
 
-Personal machine bootstrap: installs baseline tools and wires a consistent shell and editor setup onto macOS, Linux and WSL machines.
+Personal machine bootstrap: wires a consistent shell and editor setup onto macOS, Linux and WSL machines. It lists baseline tools for each Platform, but package installation is not automated yet.
 
 ## Language
 

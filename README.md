@@ -19,13 +19,27 @@ git clone https://github.com/pratyaksh52/bootstrap.git
 cd bootstrap
 ```
 
-2. Run the bootstrap script.
+2. Install the baseline packages yourself. Automated package installation is being rewritten, so for now the package lists are reference only:
+
+   - macOS: `brew bundle --file ./Brewfile` (install [Homebrew](https://brew.sh) first)
+   - Debian/Ubuntu/WSL: the packages in `packages/apt-packages.txt`
+   - Arch: the packages in `packages/pacman-packages.txt`
+
+   `stow` must be installed before the next step.
+
+3. Install the dotfiles.
 
 ```sh
-bash ./setup.sh
+./dotfiles/install-dotfiles.sh
 ```
 
-The script installs baseline packages for the current platform, stows the dotfiles into `$HOME`, and prints the command you can run later to switch your login shell to fish. It does not run `chsh` automatically.
+This stows the dotfiles into `$HOME` and writes the Managed blocks into your shell startup files.
+
+4. Switch your login shell to fish when ready:
+
+```sh
+chsh -s "$(command -v fish)"
+```
 
 ## Manual installers
 
@@ -36,7 +50,7 @@ The script installs baseline packages for the current platform, stows the dotfil
 - `dotfiles/.config/fish/`: primary interactive shell configuration
 - `dotfiles/.config/shell/`: shared Platform detection, the Environment, and the Shared aliases
 - `dotfiles/.config/shell/env.sh`: the Environment (PATH, exported vars, mise shims), defined once for every shell, interactive or not. zsh, bash and `sh` source it; fish imports it ([ADR-0003](docs/adr/0003-fish-loads-the-posix-environment.md))
-- `dotfiles/.config/shell/platform.sh`: Platform detection (macos, linux or wsl), also used by `setup.sh`
+- `dotfiles/.config/shell/platform.sh`: Platform detection (macos, linux or wsl)
 - `dotfiles/.config/shell/interactive.sh`: Interactive setup shared by zsh and bash (prompt, completions, tool hooks, loading the Shared aliases)
 - `dotfiles/.config/shell/aliases.sh`: the Shared aliases, loaded by interactive fish, zsh and bash
 - `dotfiles/.local/bin/`: the Helpers (`copy`, `inv`, `eza-ls`, `update-brew`), scripts on PATH for every shell and tool
@@ -53,7 +67,7 @@ Write it once, in the first place that fits, and it works in fish, zsh and bash 
 
 Then re-run the install below so stow links the new file.
 
-To re-apply the dotfiles without reinstalling packages:
+To re-apply the dotfiles:
 
 ```sh
 ./dotfiles/install-dotfiles.sh
