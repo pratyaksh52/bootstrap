@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 # Install the dotfiles into $HOME:
-#   1. stow the Stowed dotfiles in this directory;
-#   2. write a Managed block at the top of each Live startup file.
-# Safe to re-run. See docs/adr/0001-posix-startup-files-use-managed-blocks.md.
+#   1. unfold any directory an earlier stow linked whole into the repo;
+#   2. stow the Stowed dotfiles in this directory, files only;
+#   3. write a Managed block at the top of each Live startup file.
+# Safe to re-run. See docs/adr/0001-posix-startup-files-use-managed-blocks.md
+# and docs/adr/0002-stow-files-never-directories.md.
 
 set -euo pipefail
 
@@ -42,8 +44,56 @@ write_managed_block() {
   printf 'Managed block written: %s\n' "$file"
 }
 
+# unfold_dir DIR
+# DIR (relative to $HOME) is a symlink to the same directory in the repo.
+# Replace it with a real directory and move the repo directory's untracked
+# files (installer output, fish_variables, ...) into it. Stow then links the
+# tracked files back in one by one.
+unfold_dir() {
+  local dir="$1" file dest
+  local -a untracked=()
+
+  while IFS= read -r -d '' file; do
+    untracked+=("$file")
+  done < <(git -C "$SCRIPT_DIR" ls-files -z --others -- "$dir")
+
+  rm "$HOME/$dir"
+  mkdir -p "$HOME/$dir"
+
+  for file in ${untracked[@]+"${untracked[@]}"}; do
+    dest="$HOME/$file"
+    if [[ -e "$dest" || -L "$dest" ]]; then
+      printf 'Cannot unfold %s: %s already exists. Resolve by hand and re-run.\n' "$HOME/$dir" "$dest" >&2
+      exit 1
+    fi
+    mkdir -p "$(dirname "$dest")"
+    mv "$SCRIPT_DIR/$file" "$dest"
+    printf 'Moved out of the repo: %s\n' "$dest"
+  done
+
+  # Drop directories the moves left empty in the repo.
+  find "$SCRIPT_DIR/$dir" -mindepth 1 -type d -empty -delete
+
+  printf 'Unfolded: %s\n' "$HOME/$dir"
+}
+
+# Find directories an earlier stow (without --no-folding) linked whole into
+# the repo, outermost first.
+unfold_folded_dirs() {
+  local dir link target
+
+  while IFS= read -r dir; do
+    dir="${dir#./}"
+    link="$HOME/$dir"
+    [[ -L "$link" && -d "$link" ]] || continue
+    target="$(cd "$link" && pwd -P)"
+    [[ "$target" == "$(cd "$SCRIPT_DIR/$dir" && pwd -P)" ]] || continue
+    unfold_dir "$dir"
+  done < <(cd "$SCRIPT_DIR" && find . -mindepth 1 -type d -not -path './.git' -not -path './.git/*' | sort)
+}
+
 stow_dotfiles() {
-  (cd "$SCRIPT_DIR" && stow -t "$HOME" --restow -v .)
+  (cd "$SCRIPT_DIR" && stow -t "$HOME" --no-folding --restow -v .)
 }
 
 write_managed_blocks() {
@@ -58,5 +108,6 @@ $SOURCE_BASHRC"
   write_managed_block "$HOME/.profile" "$SOURCE_ENV"
 }
 
+unfold_folded_dirs
 stow_dotfiles
 write_managed_blocks

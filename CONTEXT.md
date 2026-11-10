@@ -25,7 +25,7 @@ What a shell gets only when a person is typing at it: prompt, completions, alias
 _Avoid_: rc, shell config, init
 
 **Live startup file**:
-A shell startup file in the home directory (`.zshrc`, `.bashrc`, `.profile` and similar) that the user and third-party installers both write to. The bootstrap does not own it.
+A shell startup file in the home directory (`.zshrc`, `.bashrc`, `.profile`, fish's `config.fish` and similar) that the user and third-party installers both write to. The bootstrap does not own it.
 _Avoid_: dotfile, rc file
 
 **Managed block**:
@@ -33,5 +33,5 @@ The marked region the bootstrap owns inside a Live startup file, used to load th
 _Avoid_: hook, snippet, shim
 
 **Stowed dotfile**:
-A configuration file the repo owns outright and links into the home directory.
+A configuration file the repo owns outright and links into the home directory. Only files are stowed, never directories: the directory around a Stowed dotfile belongs to the home directory, so installers can drop their own files beside it.
 _Avoid_: managed file, symlinked config

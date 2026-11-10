@@ -8,10 +8,6 @@ dotfiles/.config/zsh/work
 dotfiles/.config/git/work
 work-config.fish
 
-# Fish
-fish_variables
-dotfiles/.config/fish/completions/
-
 # Sensitive files
 gh/
 auth.gitconfig
