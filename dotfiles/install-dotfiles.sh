@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 # Install the dotfiles into $HOME:
 #   1. unfold any directory an earlier stow linked whole into the repo;
-#   2. stow the Stowed dotfiles in this directory, files only;
-#   3. write a Managed block at the top of each Live startup file.
+#   2. remove broken links left by Stowed dotfiles the repo no longer has;
+#   3. stow the Stowed dotfiles in this directory, files only;
+#   4. write a Managed block at the top of each Live startup file.
 # Safe to re-run. See docs/adr/0001-posix-startup-files-use-managed-blocks.md
 # and docs/adr/0002-stow-files-never-directories.md.
 
@@ -92,6 +93,52 @@ unfold_folded_dirs() {
   done < <(cd "$SCRIPT_DIR" && find . -mindepth 1 -type d -not -path './.git' -not -path './.git/*' | sort)
 }
 
+# lexical_path PATH
+# Collapse . and .. in an absolute PATH without touching the filesystem, so a
+# broken link's target can be resolved even though it no longer exists.
+lexical_path() {
+  local part
+  local -a parts=() out=()
+
+  IFS=/ read -r -a parts <<<"$1"
+  for part in ${parts[@]+"${parts[@]}"}; do
+    case "$part" in
+      '' | .) ;;
+      ..) ((${#out[@]})) && unset 'out[${#out[@]}-1]' ;;
+      *) out+=("$part") ;;
+    esac
+  done
+
+  (IFS=/ && printf '/%s\n' "${out[*]-}")
+}
+
+# Remove broken links in $HOME that point into this directory: Stowed dotfiles
+# that were deleted or renamed in the repo since the last install. Stow only
+# looks at files still in the repo, so it never cleans these up itself.
+# Searches $HOME's top level and, recursively, every top-level directory the
+# repo stows into. Broken links that aren't the repo's are left alone.
+prune_stale_links() {
+  local repo top link dir target
+
+  repo="$(cd "$SCRIPT_DIR" && pwd -P)"
+
+  while IFS= read -r -d '' link; do
+    [[ -e "$link" ]] && continue
+    dir="$(cd "$(dirname "$link")" && pwd -P)"
+    target="$(readlink "$link")"
+    [[ "$target" == /* ]] || target="$dir/$target"
+    target="$(lexical_path "$target")"
+    [[ "$target" == "$repo"/* ]] || continue
+    rm "$link"
+    printf 'Removed stale link: %s\n' "$link"
+  done < <(
+    find "$HOME" -mindepth 1 -maxdepth 1 -type l -print0
+    while IFS= read -r top; do
+      [[ -d "$HOME/$top" && ! -L "$HOME/$top" ]] && find "$HOME/$top" -type l -print0
+    done < <(cd "$SCRIPT_DIR" && find . -mindepth 1 -maxdepth 1 -type d -not -name .git | sed 's|^\./||')
+  )
+}
+
 stow_dotfiles() {
   (cd "$SCRIPT_DIR" && stow -t "$HOME" --no-folding --restow -v .)
 }
@@ -109,5 +156,6 @@ $SOURCE_BASHRC"
 }
 
 unfold_folded_dirs
+prune_stale_links
 stow_dotfiles
 write_managed_blocks

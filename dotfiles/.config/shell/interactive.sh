@@ -18,10 +18,8 @@ else
   return 0
 fi
 
-[ -f "$HOME/.config/shell/helpers.sh" ] && . "$HOME/.config/shell/helpers.sh"
-
-alias ll="eza-ls -lh"
-alias lla="eza-ls -alh"
+# Helpers are scripts on PATH; only aliases are loaded here.
+[ -f "$HOME/.config/shell/aliases.sh" ] && . "$HOME/.config/shell/aliases.sh"
 
 if [ "$_bootstrap_shell" = zsh ]; then
   setopt INTERACTIVE_COMMENTS

@@ -21,18 +21,9 @@ When fish starts:
 1. Fish starts up.
 2. It loads environment setup from `conf.d`.
 3. It loads interactive setup from `conf.d`.
-4. When you call a function like `copy` or `inv`, fish autoloads it from `~/.config/fish/functions/`.
+4. When you run `copy` or `inv`, fish finds it on PATH in `~/.local/bin`, like any other program.
 
-That last part is important. Fish has an autoloading function system. You do not need to source every function manually.
-
-If you run `copy`, fish looks for `~/.config/fish/functions/copy.fish` and loads it automatically.
-
-The same applies to:
-
-- `realpath_compat.fish`
-- `eza-ls.fish`
-- `inv.fish`
-- `update-brew.fish`
+That last part is important. The repo's own commands (the Helpers) are not fish functions. They are POSIX `sh` scripts, so zsh, bash, editors and other scripts can run them too, and there is only one copy of each to maintain. See [ADR-0004](docs/adr/0004-helpers-are-scripts-aliases-are-shared.md).
 
 ## File-by-File Explanation
 
@@ -80,8 +71,8 @@ Why this matters:
 
 Then it sets:
 
-- alias `h`
-- aliases `ll` and `lla`
+- the Shared aliases (`ll`, `lla`), by sourcing `~/.config/shell/aliases.sh`, the same file zsh and bash load
+- alias `h`, which stays fish-only because zsh's version is different
 - `starship init fish | source`
 - `fzf --fish | source`
 - `zoxide init fish | source`
@@ -90,36 +81,18 @@ Then it sets:
 
 So this is your interactive user-experience file.
 
-## Functions Directory
+## Helpers and Shared aliases
 
-The functions directory is where reusable commands live.
+Reusable commands live in `~/.local/bin` as POSIX `sh` scripts, not in `~/.config/fish/functions/`:
 
-Examples:
+- `copy`: sends stdin to the first clipboard tool it finds (`pbcopy`, `clip.exe` on WSL, `wl-copy`, `xclip`, `xsel`)
+- `inv`: pick a file with fzf and copy its absolute path
+- `eza-ls`: eza with the repo's default flags
+- `update-brew`: update, upgrade and clean up Homebrew
 
-- `~/.config/fish/functions/copy.fish`
-- `~/.config/fish/functions/realpath_compat.fish`
-- `~/.config/fish/functions/eza-ls.fish`
-- `~/.config/fish/functions/inv.fish`
-- `~/.config/fish/functions/update-brew.fish`
+Aliases that read the same in every shell live in `~/.config/shell/aliases.sh`. Fish sources that file directly, because `alias ll='eza-ls -lh'` is valid fish as well as valid zsh and bash.
 
-For example, `copy.fish`:
-
-- checks what clipboard tool exists
-- uses `pbcopy` on macOS
-- uses `clip.exe` on WSL
-- falls back to `wl-copy`, `xclip`, or `xsel` on Linux
-
-Example:
-
-```fish
-function copy
-    if type -q pbcopy
-        pbcopy
-    else if test "$BOOTSTRAP_PLATFORM" = wsl; and type -q clip.exe
-        clip.exe
-    end
-end
-```
+To add your own, see "Adding a command or alias" in the README. `~/.config/fish/functions/` is still fish's to use, for example for functions installers or you add on one machine, but the repo puts nothing there.
 
 ## Fish Syntax Basics
 
@@ -198,7 +171,8 @@ A good maintenance structure is:
 
 - `conf.d/00-*.fish`: loading the Environment from `env.sh`
 - `conf.d/10-*.fish`: interactive tool initialization
-- `functions/*.fish`: reusable commands
+- `~/.local/bin`: reusable commands (Helpers), shared with every shell
+- `~/.config/shell/aliases.sh`: aliases, shared with every shell
 - `config.fish`: mostly empty unless absolutely needed
 
 This keeps the setup understandable and scalable.
@@ -224,11 +198,10 @@ echo $BOOTSTRAP_PLATFORM
 echo $PATH
 ```
 
-### Check whether a function exists
+### Check whether an alias exists
 
 ```fish
-functions copy
-functions inv
+functions ll
 ```
 
 ### See where a command comes from
@@ -243,7 +216,7 @@ type zoxide
 
 - Put PATH entries and variables in `~/.config/shell/env.sh`, never in fish
 - Put prompt/completions/tool init in `10-interactive.fish`
-- Put custom commands in `functions/`
+- Put custom commands in `dotfiles/.local/bin/` and aliases in `dotfiles/.config/shell/aliases.sh`, so zsh and bash get them too
 - Avoid putting lots of logic into `config.fish`
 
 ## Practical Outcome in This Repo

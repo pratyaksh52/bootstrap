@@ -1,11 +1,11 @@
 status --is-interactive; or return
 
-alias h="history"
+# Helpers are scripts on PATH; only aliases are loaded here. The Shared aliases
+# are written so the same file parses in fish, zsh and bash.
+set -l shared_aliases ~/.config/shell/aliases.sh
+test -r $shared_aliases; and source $shared_aliases
 
-if functions -q eza-ls
-    alias ll="eza-ls -lh"
-    alias lla="eza-ls -alh"
-end
+alias h="history"
 
 if type -q starship
     starship init fish | source

@@ -1,0 +1,15 @@
+#!/bin/sh
+# eza-ls: eza with the repo's default flags. ll and lla are Shared aliases over it.
+
+command -v eza >/dev/null 2>&1 || {
+  printf 'eza-ls: eza not found\n' >&2
+  exit 127
+}
+
+exec eza \
+  --icons=auto \
+  --group-directories-first \
+  --git \
+  --classify=auto \
+  --octal-permissions \
+  "$@"

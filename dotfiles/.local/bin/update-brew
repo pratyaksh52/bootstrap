@@ -1,0 +1,14 @@
+#!/bin/sh
+# update-brew: update Homebrew, upgrade everything (greedy casks too), clean up
+# and check. Each step runs even if an earlier one fails.
+
+command -v brew >/dev/null 2>&1 || {
+  printf 'update-brew: Homebrew not found\n' >&2
+  exit 1
+}
+
+brew update
+brew upgrade
+brew upgrade --cask --greedy
+brew cleanup
+brew doctor

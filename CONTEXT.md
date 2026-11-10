@@ -21,8 +21,16 @@ The PATH entries and exported variables every shell process should see, interact
 _Avoid_: env, profile, path setup
 
 **Interactive setup**:
-What a shell gets only when a person is typing at it: prompt, completions, aliases, helper commands, tool hooks.
+What a shell gets only when a person is typing at it: prompt, completions, tool hooks, the Shared aliases, and the few aliases or wrappers that must differ per shell.
 _Avoid_: rc, shell config, init
+
+**Helper**:
+A small command the repo owns, kept once as a Stowed dotfile on PATH, so it works the same from fish, zsh, bash, scripts and editors. Anything that does not need to change the calling shell's state is a Helper.
+_Avoid_: function, util, shell helper
+
+**Shared alias**:
+An alias defined once and loaded into every interactive fish, zsh and bash shell. An alias that cannot be written the same way for all three is not a Shared alias; it lives in that shell's Interactive setup.
+_Avoid_: abbreviation, shortcut
 
 **Live startup file**:
 A shell startup file in the home directory (`.zshrc`, `.bashrc`, `.profile`, fish's `config.fish` and similar) that the user and third-party installers both write to. The bootstrap does not own it.
