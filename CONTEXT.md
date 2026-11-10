@@ -17,7 +17,7 @@ _Avoid_: non-brew package
 ### Shell setup
 
 **Environment**:
-The PATH entries and exported variables every shell process should see, interactive or not, including those started by tools and editors.
+The PATH entries and exported variables every shell process should see, interactive or not, including those started by tools and editors. It holds only what the repo chooses; entries a tool's own installer adds (Cargo, Go and the like) are not part of it. It is defined once and every shell loads that one definition.
 _Avoid_: env, profile, path setup
 
 **Interactive setup**:

@@ -6,25 +6,10 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 APT_MANIFEST="$SCRIPT_DIR/packages/apt-packages.txt"
 PACMAN_MANIFEST="$SCRIPT_DIR/packages/pacman-packages.txt"
 
-is_wsl() {
-  [[ -n "${WSL_DISTRO_NAME:-}" ]] || grep -qi microsoft /proc/sys/kernel/osrelease 2>/dev/null
-}
-
-platform() {
-  case "$(uname -s)" in
-    Darwin) printf 'macos\n' ;;
-    Linux)
-      if is_wsl; then
-        printf 'wsl\n'
-      else
-        printf 'linux\n'
-      fi
-      ;;
-    *)
-      printf 'unsupported\n'
-      ;;
-  esac
-}
+# Platform detection is shared with the Environment; load it from the repo,
+# since nothing is stowed into $HOME yet.
+# shellcheck source=dotfiles/.config/shell/platform.sh
+. "$SCRIPT_DIR/dotfiles/.config/shell/platform.sh"
 
 require_command() {
   if ! command -v "$1" >/dev/null 2>&1; then
@@ -122,7 +107,7 @@ main() {
   local target_platform
 
   cd "$SCRIPT_DIR"
-  target_platform="$(platform)"
+  target_platform="$(bootstrap_platform)"
 
   case "$target_platform" in
     macos)

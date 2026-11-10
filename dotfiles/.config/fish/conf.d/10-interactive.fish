@@ -23,10 +23,7 @@ if type -q uv
     uv generate-shell-completion fish | source
 end
 
+# Non-interactive shells get mise's shims from the Environment instead.
 if command -q mise
-    if status is-interactive
-        mise activate fish | source
-    else
-        mise activate fish --shims | source
-    end
+    mise activate fish | source
 end

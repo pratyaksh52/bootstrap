@@ -3,7 +3,7 @@
 copy() {
   if command -v pbcopy >/dev/null 2>&1; then
     pbcopy
-  elif shell_is_wsl && command -v clip.exe >/dev/null 2>&1; then
+  elif [ "${BOOTSTRAP_PLATFORM:-}" = wsl ] && command -v clip.exe >/dev/null 2>&1; then
     clip.exe
   elif command -v wl-copy >/dev/null 2>&1; then
     wl-copy

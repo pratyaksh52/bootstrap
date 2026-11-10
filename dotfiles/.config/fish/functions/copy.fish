@@ -1,7 +1,7 @@
 function copy
     if type -q pbcopy
         pbcopy
-    else if test "$BOOTSTRAP_IS_WSL" = 1; and type -q clip.exe
+    else if test "$BOOTSTRAP_PLATFORM" = wsl; and type -q clip.exe
         clip.exe
     else if type -q wl-copy
         wl-copy

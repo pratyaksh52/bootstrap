@@ -54,15 +54,10 @@ File:
 
 What it does:
 
-- Sets OS detection flags:
-  - `BOOTSTRAP_OS`
-  - `BOOTSTRAP_IS_WSL`
-- Adds common paths with `fish_add_path`
-- Detects Homebrew and adds brew paths if available
-- Sets `LESS` / `LESSOPEN`
-- Adds Cargo path if `~/.cargo/bin` exists
+- Loads the Environment from `~/.config/shell/env.sh`, its one definition. It runs `env.sh` in `sh` and copies every PATH entry and variable that `env.sh` added or changed into fish.
+- Holds no paths or variables of its own. To add a PATH entry or a variable, edit `env.sh`; every shell picks it up. See [ADR-0003](docs/adr/0003-fish-loads-the-posix-environment.md).
 
-This file should stay focused on environment state, not aliases or prompt logic.
+Tools that add their own paths (rustup, Go and the like) do it in their own `conf.d` fragments next to the repo's, not here.
 
 ### `10-interactive.fish`
 
@@ -91,6 +86,7 @@ Then it sets:
 - `fzf --fish | source`
 - `zoxide init fish | source`
 - `uv generate-shell-completion fish | source`
+- `mise activate fish | source` (non-interactive fish gets mise's shims from the Environment instead)
 
 So this is your interactive user-experience file.
 
@@ -119,7 +115,7 @@ Example:
 function copy
     if type -q pbcopy
         pbcopy
-    else if test "$BOOTSTRAP_IS_WSL" = 1; and type -q clip.exe
+    else if test "$BOOTSTRAP_PLATFORM" = wsl; and type -q clip.exe
         clip.exe
     end
 end
@@ -155,23 +151,17 @@ export LESS="-R"
 
 ### PATH management
 
+The repo's PATH entries live in `~/.config/shell/env.sh`, not in fish. For a one-off entry of your own, `fish_add_path` is the fish-native way:
+
 ```fish
-fish_add_path -m ~/.local/bin
+fish_add_path ~/some/bin
 ```
-
-This is preferred over manually editing `$PATH`.
-
-Why:
-
-- avoids duplicates
-- cleaner than string concatenation
-- fish-native
 
 ### Conditionals
 
 ```fish
-if type -q brew
-    set -gx BREW_PREFIX (brew --prefix)
+if type -q starship
+    starship init fish | source
 end
 ```
 
@@ -206,7 +196,7 @@ In fish, `alias` is basically shorthand for creating a function.
 
 A good maintenance structure is:
 
-- `conf.d/00-*.fish`: environment and OS detection
+- `conf.d/00-*.fish`: loading the Environment from `env.sh`
 - `conf.d/10-*.fish`: interactive tool initialization
 - `functions/*.fish`: reusable commands
 - `config.fish`: mostly empty unless absolutely needed
@@ -230,7 +220,7 @@ fish
 ### Inspect variables
 
 ```fish
-echo $BOOTSTRAP_OS
+echo $BOOTSTRAP_PLATFORM
 echo $PATH
 ```
 
@@ -251,7 +241,7 @@ type zoxide
 
 ## Practical Maintenance Advice
 
-- Put env/path logic in `00-env.fish`
+- Put PATH entries and variables in `~/.config/shell/env.sh`, never in fish
 - Put prompt/completions/tool init in `10-interactive.fish`
 - Put custom commands in `functions/`
 - Avoid putting lots of logic into `config.fish`
@@ -262,6 +252,6 @@ The current shell model is:
 
 - fish is the supported interactive shell
 - bash is used for scripts like `setup.sh`
-- zsh and bash share `~/.config/shell/env.sh` and `~/.config/shell/interactive.sh`, loaded through a managed block (see the README)
+- every shell loads the Environment from `~/.config/shell/env.sh`; zsh and bash load it, and `interactive.sh`, through a managed block (see the README)
 
 So if you want to change your day-to-day shell experience, the fish files are now the main place to edit.

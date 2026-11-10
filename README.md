@@ -34,8 +34,9 @@ The script installs baseline packages for the current platform, stows the dotfil
 ## Shell layout
 
 - `dotfiles/.config/fish/`: primary interactive shell configuration
-- `dotfiles/.config/shell/`: shared OS detection, environment, path setup, and portable helpers
-- `dotfiles/.config/shell/env.sh`: the Environment for zsh, bash and `sh` (PATH, exported vars, mise shims); loaded by every POSIX shell, interactive or not
+- `dotfiles/.config/shell/`: shared Platform detection, the Environment, and portable helpers
+- `dotfiles/.config/shell/env.sh`: the Environment (PATH, exported vars, mise shims), defined once for every shell, interactive or not. zsh, bash and `sh` source it; fish imports it ([ADR-0003](docs/adr/0003-fish-loads-the-posix-environment.md))
+- `dotfiles/.config/shell/platform.sh`: Platform detection (macos, linux or wsl), also used by `setup.sh`
 - `dotfiles/.config/shell/interactive.sh`: Interactive setup shared by zsh and bash (prompt, completions, aliases, helpers, tool hooks)
 
 The repo does not own `~/.zshrc`, `~/.zshenv`, `~/.bashrc`, `~/.bash_profile` or `~/.profile`, because installers keep appending to them. Instead, `dotfiles/install-dotfiles.sh` writes a managed block between `# >>> bootstrap >>>` and `# <<< bootstrap <<<` at the top of each one. That block loads the files above, and everything outside it is left alone. See [ADR-0001](docs/adr/0001-posix-startup-files-use-managed-blocks.md).
@@ -48,6 +49,8 @@ To re-apply the dotfiles without reinstalling packages:
 
 ## Notes
 
-- macOS detects Homebrew dynamically with `brew --prefix`.
+- The Environment finds Homebrew in its standard locations even when it isn't on PATH yet, as in GUI-launched processes.
+- `tests/env-parity.sh` checks that sh, bash, zsh and fish all end up with the same Environment. Run it after changing `env.sh` or the fish setup.
+- Tools that add their own PATH entries (rustup's Cargo, Go) are not part of the repo. If one of them didn't set up a shell for you, add its line to that shell's startup file outside the bootstrap block.
 - Linux and WSL clipboard helpers prefer `wl-copy`, `xclip`, `xsel`, or `clip.exe` depending on what exists.
 - Open [`dotfiles/.config/git/personal/personal.gitconfig`](/Users/pratyakshchoudhary/bootstrap/dotfiles/.config/git/personal/personal.gitconfig) and replace the personal credentials with your own.

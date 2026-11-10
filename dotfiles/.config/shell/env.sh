@@ -1,5 +1,10 @@
-# Shared environment for POSIX shells.
+# The Environment: the one definition, loaded by every shell.
+# zsh, bash and sh source it from their Managed blocks; fish runs it in sh
+# and imports the result (see docs/adr/0003-fish-loads-the-posix-environment.md).
+# Only entries the repo chooses belong here; installers add their own.
 
+# Add a directory to the front of PATH, unless it is missing or already on
+# PATH (then it stays where it is, so later installer lines can override).
 shell_prepend_path() {
   [ -n "${1:-}" ] || return 0
   [ -d "$1" ] || return 0
@@ -10,32 +15,11 @@ shell_prepend_path() {
   esac
 }
 
-shell_is_macos() {
-  [ "$(uname -s)" = "Darwin" ]
-}
-
-shell_is_linux() {
-  [ "$(uname -s)" = "Linux" ]
-}
-
-shell_is_wsl() {
-  [ -n "${WSL_DISTRO_NAME:-}" ] || grep -qi microsoft /proc/sys/kernel/osrelease 2>/dev/null
-}
-
-export BOOTSTRAP_OS="unknown"
-export BOOTSTRAP_IS_WSL="0"
-
-if shell_is_macos; then
-  export BOOTSTRAP_OS="macos"
-elif shell_is_linux; then
-  export BOOTSTRAP_OS="linux"
+if [ -f "$HOME/.config/shell/platform.sh" ]; then
+  . "$HOME/.config/shell/platform.sh"
+  BOOTSTRAP_PLATFORM="$(bootstrap_platform)"
+  export BOOTSTRAP_PLATFORM
 fi
-
-if shell_is_wsl; then
-  export BOOTSTRAP_IS_WSL="1"
-fi
-
-[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
 
 shell_prepend_path "$HOME/.local/bin"
 shell_prepend_path "$HOME/.lmstudio/bin"
@@ -49,7 +33,12 @@ for _brew in "$(command -v brew 2>/dev/null)" /opt/homebrew/bin/brew /usr/local/
 done
 
 if [ -n "$_brew" ]; then
-  BREW_PREFIX="$("$_brew" --prefix)"
+  # The prefix is the directory above bin/; asking `brew --prefix` costs
+  # every shell a slow process start.
+  case "$_brew" in
+    */bin/brew) BREW_PREFIX="${_brew%/bin/brew}" ;;
+    *) BREW_PREFIX="$("$_brew" --prefix)" ;;
+  esac
   export BREW_PREFIX
   shell_prepend_path "$BREW_PREFIX/bin"
   shell_prepend_path "$BREW_PREFIX/sbin"
@@ -62,7 +51,12 @@ unset _brew
 
 # mise shims give non-interactive shells (tools, editors, scripts) the
 # mise-managed tool versions. Interactive shells switch to full activation
-# in interactive.sh.
+# in their interactive setup.
 shell_prepend_path "${MISE_DATA_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/mise}/shims"
 
+if [ "$BOOTSTRAP_PLATFORM" = wsl ]; then
+  export BROWSER="${BROWSER:-wslview}"
+fi
+
 export LESS="${LESS:--R}"
+export PATH
