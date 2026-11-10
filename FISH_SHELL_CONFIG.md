@@ -262,6 +262,6 @@ The current shell model is:
 
 - fish is the supported interactive shell
 - bash is used for scripts like `setup.sh`
-- zsh still works, but only as a compatibility shim
+- zsh and bash share `~/.config/shell/env.sh` and `~/.config/shell/interactive.sh`, loaded through a managed block (see the README)
 
 So if you want to change your day-to-day shell experience, the fish files are now the main place to edit.

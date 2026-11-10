@@ -100,8 +100,8 @@ print_next_steps() {
   local target_platform="$1"
 
   printf '\nSetup complete.\n'
-  printf 'The repo now manages shell startup files with stow.\n'
-  printf 'Fish is the supported interactive shell; bash remains the scripting shell.\n'
+  printf 'Dotfiles are stowed; zsh and bash startup files load the repo via a bootstrap managed block.\n'
+  printf 'Fish is the login shell; zsh and bash share one environment and interactive setup.\n'
 
   case "$target_platform" in
     macos)
@@ -139,7 +139,7 @@ main() {
       ;;
   esac
 
-  "$SCRIPT_DIR/dotfiles/stow-dotfiles.sh"
+  "$SCRIPT_DIR/dotfiles/install-dotfiles.sh"
   print_next_steps "$target_platform"
 }
 

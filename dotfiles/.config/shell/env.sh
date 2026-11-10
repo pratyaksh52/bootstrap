@@ -41,8 +41,15 @@ shell_prepend_path "$HOME/.local/bin"
 shell_prepend_path "$HOME/.lmstudio/bin"
 shell_prepend_path "$HOME/jetbrains"
 
-if command -v brew >/dev/null 2>&1; then
-  BREW_PREFIX="$(brew --prefix)"
+# GUI-launched processes start with a minimal PATH, so look in the standard
+# Homebrew locations too rather than relying on brew already being on PATH.
+for _brew in "$(command -v brew 2>/dev/null)" /opt/homebrew/bin/brew /usr/local/bin/brew /home/linuxbrew/.linuxbrew/bin/brew; do
+  [ -n "$_brew" ] && [ -x "$_brew" ] && break
+  _brew=""
+done
+
+if [ -n "$_brew" ]; then
+  BREW_PREFIX="$("$_brew" --prefix)"
   export BREW_PREFIX
   shell_prepend_path "$BREW_PREFIX/bin"
   shell_prepend_path "$BREW_PREFIX/sbin"
@@ -51,5 +58,11 @@ if command -v brew >/dev/null 2>&1; then
     export LESSOPEN="|$BREW_PREFIX/bin/lesspipe.sh %s"
   fi
 fi
+unset _brew
+
+# mise shims give non-interactive shells (tools, editors, scripts) the
+# mise-managed tool versions. Interactive shells switch to full activation
+# in interactive.sh.
+shell_prepend_path "${MISE_DATA_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/mise}/shims"
 
 export LESS="${LESS:--R}"
