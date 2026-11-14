@@ -2,8 +2,8 @@
 # Loaded from the managed block in ~/.zshrc and ~/.bashrc, after env.sh.
 
 case $- in
-  *i*) ;;
-  *) return 0 ;;
+*i*) ;;
+*) return 0 ;;
 esac
 
 # Login bash can reach this twice (~/.profile and ~/.bashrc); load once per shell.
@@ -11,23 +11,23 @@ esac
 _bootstrap_interactive_loaded=1
 
 if [ -n "${ZSH_VERSION:-}" ]; then
-  _bootstrap_shell=zsh
+    _bootstrap_shell=zsh
 elif [ -n "${BASH_VERSION:-}" ]; then
-  _bootstrap_shell=bash
+    _bootstrap_shell=bash
 else
-  return 0
+    return 0
 fi
 
 # Helpers are scripts on PATH; only aliases are loaded here.
 [ -f "$HOME/.config/shell/aliases.sh" ] && . "$HOME/.config/shell/aliases.sh"
 
 if [ "$_bootstrap_shell" = zsh ]; then
-  setopt INTERACTIVE_COMMENTS
-  alias h="history 0"
-  autoload -Uz compinit
-  compinit -C
+    setopt INTERACTIVE_COMMENTS
+    alias h="history 0"
+    autoload -Uz compinit
+    compinit -C
 else
-  alias h="history"
+    alias h="history"
 fi
 
 command -v starship >/dev/null 2>&1 && eval "$(starship init "$_bootstrap_shell")"
