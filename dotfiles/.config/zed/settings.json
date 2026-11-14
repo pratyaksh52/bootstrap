@@ -13,7 +13,7 @@
         "model_parameters": [],
     },
     "agent_ui_font_size": 15.0,
-    "disable_ai": false,
+    "disable_ai": true,
     "buffer_font_family": "JetBrains Mono NL",
     "buffer_font_size": 14.0,
     "buffer_line_height": {
@@ -63,7 +63,19 @@
         },
         "Shell Script": {
             "format_on_save": "on",
-            "tab_size": 2,
+            "tab_size": 4,
+            "formatter": {
+                "external": {
+                    "command": "shfmt",
+                    // Change `--indent 2` to match your preferred tab_size
+                    "arguments": [
+                        "--filename",
+                        "{buffer_path}",
+                        "--indent",
+                        "4",
+                    ],
+                },
+            },
         },
         "Fish": {
             "format_on_save": "on",
